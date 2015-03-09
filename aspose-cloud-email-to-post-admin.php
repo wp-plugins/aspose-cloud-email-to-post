@@ -219,22 +219,23 @@ function apc_email_to_post_add_inline_popup_content() {
 }
 
 
-
+add_filter('upload_mimes', 'apc_email_to_post_uploader_upload_mimes', 10, 3);
 if (check_upload_apc_email_to_post('Aspose-Cloud-Email-To-Post-Select-File')) {
 
     add_filter('media_upload_tabs', 'apc_email_to_post_uploader_tabs', 10, 1);
     add_filter('attachment_fields_to_edit', 'apc_email_to_post_uploader_action_button', 20, 2);
     add_filter('media_send_to_editor', 'apc_email_to_post_uploader_file_selected', 10, 3);
-    add_filter('upload_mimes', 'apc_email_to_post_uploader_upload_mimes', 10, 3);
 
 }
 
-function apc_email_to_post_uploader_upload_mimes ( $existing_mimes=array() ) {
+function apc_email_to_post_uploader_upload_mimes ( $mimes ) {
 
-    $existing_mimes = array();
-    $existing_mimes['eml'] = 'Email';
-
-    return $existing_mimes;
+    $email_mimes_array['eml'] = 'Email eml';
+    $email_mimes_array['msg'] = 'Email msg';
+    $email_mimes_array['mht'] = 'Email mht';
+    $new_array =  array_merge($mimes,$email_mimes_array);
+    return $new_array;
+  //  echo "<pre>"; print_r($new_array); exit;
 }
 
 function apc_email_to_post_uploader_tabs($_default_tabs) {
@@ -279,6 +280,7 @@ function add_apc_email_to_post_uploader_context_to_url($url, $type) {
 
 
 function check_upload_apc_email_to_post($context) {
+
     if (isset($_REQUEST['context']) && $_REQUEST['context'] == $context) {
         add_filter('media_upload_form_url', 'add_apc_email_to_post_uploader_context_to_url', 10, 2);
         return TRUE;
