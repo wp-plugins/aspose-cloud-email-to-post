@@ -1,9 +1,9 @@
-=== Aspose Cloud Email to Post ===
+﻿=== Aspose Cloud Email to Post ===
 Contributors: fahadadeelgmailcom
 Contributor's website: http://cloud.aspose.com/
 Tags: wp email importer, email importer, email reader, email read, mail reader, mail to post, email to post, mail to wordpress post, mail subject, mail, mail body, email
 Requires at least: 2.8
-Tested up to: 3.8.1
+Tested up to: 4.3
 Stable tag: 1.0
 License: GPLv2 or later
 
